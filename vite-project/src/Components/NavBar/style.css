@@ -1,0 +1,16 @@
+nav.navbar {
+    margin: 10px;
+    background-color: #f7a399;
+    padding: 10px;
+}
+
+.navbar-item.is-active {
+    background-color: #f38375;
+    color: white;
+    border-radius: 15px;
+}
+
+.navbar-item:hover {
+    background-color: #ffe3e0;
+    color: #fff; 
+}

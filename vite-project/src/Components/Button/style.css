@@ -1,0 +1,11 @@
+.add-task-button {
+    background-color: #f38375;
+    color: black;
+    border-radius: 15px;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.add-task-button:hover {
+    color: white; 
+}
