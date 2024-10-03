@@ -20,7 +20,7 @@ export default function App() {
         priority="Alta"
         finalDate="12/12/12"
       />
-      <div class="columns is-mobile custom-column">
+      <div className="columns is-mobile custom-column">
         <Column title="Backlog"/>
         <Column title="To do"/>
         <Column title="In progress"/>

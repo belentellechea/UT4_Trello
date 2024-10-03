@@ -1,6 +1,29 @@
 import "../style.css"
+import axios from "axios";
 
-export function AddTaskModal({ visible, setVisible}){
+const url= `http://localhost:3000/cards`;
+
+export function AddTaskModal({visible, setVisible}){
+
+    const handleSubmit = async(e) => {
+        e.preventDefault(); 
+
+        const newTask = {
+            title: e.target.title.value,
+            description: e.target.description.value, 
+            assigned: e.target.assigned.value, 
+            priority: e.target.priority.value, 
+            status: e.target.status.value, 
+            finalDate: e.target['due-date'].value, 
+        }
+
+        try {
+            await axios.post(url, newTask); 
+            setVisible("none"); 
+        } catch (error) {
+            console.error("Error al añadir la tarea:", error); 
+        }
+    }
 
     function cerrarModal(){
         setVisible("none"); 
@@ -10,7 +33,7 @@ export function AddTaskModal({ visible, setVisible}){
         <div className="modal" style={{display: visible}}> 
             <div className="modal-content">
             <h2>Nueva tarea</h2>
-            <form id="taskForm">
+            <form id="taskForm" onSubmit={handleSubmit}>
                 <div className="columns is-mobile">
                     <div className="column">
                         <div className="box">
@@ -20,7 +43,7 @@ export function AddTaskModal({ visible, setVisible}){
 
                         <div className="box">
                             <label for="assigned">Asignado</label>
-                            <select name="asignado" id="assignedInput">
+                            <select name="assigned" id="assignedInput">
                                 <option>Persona 1</option>
                                 <option>Persona 2</option>
                                 <option>Persona 3</option>
@@ -29,7 +52,7 @@ export function AddTaskModal({ visible, setVisible}){
 
                         <div className="box">
                             <label for="status">Estado</label>
-                            <select name="estado" id="statusInput">
+                            <select name="status" id="statusInput">
                                 <option>Backlog</option>
                                 <option>To do</option>
                                 <option>In progress</option>
@@ -48,7 +71,7 @@ export function AddTaskModal({ visible, setVisible}){
 
                         <div className="box">
                             <label for="priority">Prioridad</label>
-                            <select name="prioridad" id="priorityInput">
+                            <select name="priority" id="priorityInput">
                                 <option>Alta</option>
                                 <option>Media</option>
                                 <option>Baja</option>
@@ -66,7 +89,7 @@ export function AddTaskModal({ visible, setVisible}){
                     <button type="submit" id="accept-button">Aceptar</button>
                 </div>
             </form>
+            </div>
         </div>
-        </div>
-    )
+    );
 }
