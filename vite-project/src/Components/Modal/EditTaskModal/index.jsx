@@ -15,13 +15,12 @@ export function EditTaskModal({ visible, setVisible, card }) {
         }));
     };
 
-    function cerrarModal() {
-        setVisible("none");
+    function cerrarModal(){
+        setVisible("none"); 
     }
 
     async function eliminarTarea() {
         const taskId = card.id; 
-        console.log(`Eliminando tarea con id: ${taskId}`);
         try {
             await axios.delete(`${url}/${taskId}`, {
                 headers: {
@@ -34,11 +33,27 @@ export function EditTaskModal({ visible, setVisible, card }) {
         }
     };
 
+    async function actualizarTarea(e) {
+        e.preventDefault(); 
+        const taskId = card.id; 
+
+        try {
+            await axios.patch(`${url}/${taskId}`, formData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            setVisible("none");
+        } catch (error) {
+            console.error("Error actualizando la tarea:", error); 
+        }
+    }
+
     return (
         <div className="modal" style={{ display: visible }}>
             <div className="modal-content">
                 <h2>Editar tarea</h2>
-                <form id="editTaskForm">
+                <form id="editTaskForm" onSubmit={actualizarTarea}>
                     <div className="columns is-mobile">
                         <div className="column">
                             <div className="box">
@@ -120,7 +135,7 @@ export function EditTaskModal({ visible, setVisible, card }) {
                         <button type="button" id="cancel-button" onClick={cerrarModal}>
                             Cancelar
                         </button>
-                        <button type="submit" id="save-button">
+                        <button type="submit" id="save-button"> 
                             Guardar cambios
                         </button>
                         <button type="button" id="clear-button" onClick={eliminarTarea}>

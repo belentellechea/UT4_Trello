@@ -5,7 +5,7 @@ const url= `http://localhost:3000/cards`;
 
 export function AddTaskModal({visible, setVisible}){
 
-    const handleSubmit = async(e) => {
+    async function añadirTarea(e) {
         e.preventDefault(); 
 
         const newTask = {
@@ -33,7 +33,7 @@ export function AddTaskModal({visible, setVisible}){
         <div className="modal" style={{display: visible}}> 
             <div className="modal-content">
             <h2>Nueva tarea</h2>
-            <form id="taskForm" onSubmit={handleSubmit}>
+            <form id="taskForm" onSubmit={añadirTarea}>
                 <div className="columns is-mobile">
                     <div className="column">
                         <div className="box">
