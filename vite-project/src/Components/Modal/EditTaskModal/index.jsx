@@ -7,10 +7,14 @@ const url= `http://localhost:3000/cards`;
 export function EditTaskModal({ visible, setVisible, card }) {
     const [formData, setFormData] = useState(card);
 
+    // funcion para que se muestren en el formulario los datos 
+    // de la card que se está editando 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
-            ...prevData,
+            ...prevData, 
+            // se está actualizando únicamente la propiedad cuyo 
+            // name coincide con el campo que fue modificado
             [name]: value,
         }));
     };
