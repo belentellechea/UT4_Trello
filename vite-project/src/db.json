@@ -1,13 +1,13 @@
 {
   "cards": [
     {
-      "id": "fcd2",
-      "title": "kkkk",
-      "description": "kkkkkkkkkkk",
+      "id": "e328",
+      "title": "Gestor",
+      "description": "Trello",
       "assigned": "Persona 1",
       "priority": "Alta",
-      "status": "Backlog",
-      "finalDate": "2024-10-28"
+      "status": "In progress",
+      "finalDate": "2024-10-15"
     }
   ]
 }

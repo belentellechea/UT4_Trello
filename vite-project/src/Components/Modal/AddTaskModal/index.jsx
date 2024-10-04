@@ -21,7 +21,7 @@ export function AddTaskModal({visible, setVisible}){
             await axios.post(url, newTask); 
             setVisible("none"); 
         } catch (error) {
-            console.error("Error al añadir la tarea:", error); 
+            console.error("Error añadiendo la tarea:", error); 
         }
     }
 

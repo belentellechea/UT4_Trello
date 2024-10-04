@@ -13,13 +13,6 @@ export default function App() {
         <h1 className="title">Gestor de tareas</h1>
         <Button></Button>
       </div>
-      <Card
-        title="holaaa"
-        description="jfjffjfj"
-        assigned="persona 2"
-        priority="Alta"
-        finalDate="12/12/12"
-      />
       <div className="columns is-mobile custom-column">
         <Column title="Backlog"/>
         <Column title="To do"/>

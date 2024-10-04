@@ -15,19 +15,14 @@ export function Card(props){
                 <div className="card-header-title">{props.title}</div>
             </div>
             <div className="card-content">
-                <p>Descripción: {props.description}</p>
-                <p>Asignado: {props.assigned}</p>
-                <p>Prioridad: {props.priority}</p>
-                <p>Fecha límite: {props.finalDate}</p>
+                <p><strong>Descripción:</strong> {props.description}</p>
+                <p><strong>Asignado:</strong> {props.assigned}</p>
+                <p><strong>Prioridad:</strong> {props.priority}</p>
+                <p><strong>Fecha límite:</strong> {props.finalDate}</p>
             </div>
             <EditTaskModal 
                 visible={visible} setVisible={setVisible} 
-                title={props.title}
-                description={props.description}
-                assigned={props.assigned}
-                priority={props.priority}
-                finalDate={props.finalDate}
-                status={props.status}
+                card={props} 
             />
         </div>
     )

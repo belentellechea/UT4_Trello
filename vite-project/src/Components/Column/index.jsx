@@ -10,7 +10,7 @@ export function Column(props) {
     const [isLoading, setIsLoading] = useState(true);
   
     useEffect(() => {
-      const fetchTasks = async () => {
+      async function fetchTasks() {
         try {
           const response = await axios.get(url);
           const taskData = response.data;
@@ -19,6 +19,7 @@ export function Column(props) {
   
           setTasks(filteredTasks); 
           setIsLoading(false); 
+
         } catch (error) {
           console.error("Error al obtener las tareas:", error);
         }
@@ -36,6 +37,7 @@ export function Column(props) {
                     tasks.map((task) => (
                         <Card
                         key={task.id}
+                        id={task.id}
                         title={task.title}
                         description={task.description}
                         assigned={task.assigned}
