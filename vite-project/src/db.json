@@ -8,6 +8,15 @@
       "priority": "Alta",
       "status": "To do",
       "finalDate": "2024-10-15"
+    },
+    {
+      "id": "4fca",
+      "title": "",
+      "description": "",
+      "assigned": "Persona 1",
+      "priority": "Alta",
+      "status": "In progress",
+      "finalDate": ""
     }
   ]
 }

@@ -1,10 +1,7 @@
 import "../style.css";
 import { useState } from "react";
-import axios from "axios";
 
-const url= `http://localhost:3000/cards`;
-
-export function EditTaskModal({ visible, setVisible, card }) {
+export function EditTaskModal({ visible, setVisible, card, deleteTask, updateTask }) {
     const [formData, setFormData] = useState(card);
 
     // funcion para que se muestren en el formulario los datos 
@@ -19,38 +16,19 @@ export function EditTaskModal({ visible, setVisible, card }) {
         }));
     };
 
-    function cerrarModal(){
+    function closeModal(){
         setVisible("none"); 
     }
 
-    async function eliminarTarea() {
-        const taskId = card.id; 
-        try {
-            await axios.delete(`${url}/${taskId}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });            
-            setVisible("none"); 
-        } catch (error) {
-            console.error("Error eliminando la tarea:", error);
-        }
+    function removeTask() { 
+        deleteTask(card.id);
+        closeModal(); 
     };
 
     async function actualizarTarea(e) {
         e.preventDefault(); 
-        const taskId = card.id; 
-
-        try {
-            await axios.patch(`${url}/${taskId}`, formData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            setVisible("none");
-        } catch (error) {
-            console.error("Error actualizando la tarea:", error); 
-        }
+        updateTask(card.id, formData); 
+        closeModal(); 
     }
 
     return (
@@ -136,13 +114,13 @@ export function EditTaskModal({ visible, setVisible, card }) {
                         </div>
                     </div>
                     <div className="modal-buttons">
-                        <button type="button" id="cancel-button" onClick={cerrarModal}>
+                        <button type="button" id="cancel-button" onClick={closeModal}>
                             Cancelar
                         </button>
                         <button type="submit" id="save-button"> 
                             Guardar cambios
                         </button>
-                        <button type="button" id="clear-button" onClick={eliminarTarea}>
+                        <button type="button" id="clear-button" onClick={removeTask}>
                             Eliminar tarea
                         </button>
                     </div>

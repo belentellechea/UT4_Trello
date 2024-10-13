@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css"
 import { AddTaskModal } from "../Modal/AddTaskModal";
 
-export function Button(){
+export function Button({postTask}){
     const [visible, setVisible] = useState("none")
 
     function openModal(){
@@ -12,7 +12,7 @@ export function Button(){
     return (
         <div>
             <button className="add-task-button" onClick={openModal}> + Agregar tarea </button>
-            <AddTaskModal visible={visible} setVisible={setVisible} />
+            <AddTaskModal visible={visible} setVisible={setVisible} postTask={postTask}/>
         </div>
         
     )

@@ -23,6 +23,8 @@ export function Card(props){
             <EditTaskModal 
                 visible={visible} setVisible={setVisible} 
                 card={props} 
+                deleteTask={props.deleteTask}
+                updateTask={props.updateTask}
             />
         </div>
     )

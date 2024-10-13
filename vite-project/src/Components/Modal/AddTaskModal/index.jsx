@@ -1,11 +1,8 @@
 import "../style.css"
-import axios from "axios";
 
-const url= `http://localhost:3000/cards`;
+export function AddTaskModal({visible, setVisible, postTask}){
 
-export function AddTaskModal({visible, setVisible}){
-
-    async function añadirTarea(e) {
+    function addTask(e) {
         e.preventDefault(); 
 
         const newTask = {
@@ -16,16 +13,12 @@ export function AddTaskModal({visible, setVisible}){
             status: e.target.status.value, 
             finalDate: e.target['due-date'].value, 
         }
-
-        try {
-            await axios.post(url, newTask); 
-            setVisible("none"); 
-        } catch (error) {
-            console.error("Error añadiendo la tarea:", error); 
-        }
+        
+        postTask(newTask); 
+        closeModal(); 
     }
 
-    function cerrarModal(){
+    function closeModal(){
         setVisible("none"); 
     }
 
@@ -33,7 +26,7 @@ export function AddTaskModal({visible, setVisible}){
         <div className="modal" style={{display: visible}}> 
             <div className="modal-content">
             <h2>Nueva tarea</h2>
-            <form id="taskForm" onSubmit={añadirTarea}>
+            <form id="taskForm" onSubmit={addTask}>
                 <div className="columns is-mobile">
                     <div className="column">
                         <div className="box">
@@ -85,7 +78,7 @@ export function AddTaskModal({visible, setVisible}){
                     </div>
                 </div>
                 <div className="modal-buttons">
-                    <button type="button" id="cancel-button" onClick={cerrarModal}>Cancelar</button>
+                    <button type="button" id="cancel-button" onClick={closeModal}>Cancelar</button>
                     <button type="submit" id="accept-button">Aceptar</button>
                 </div>
             </form>
